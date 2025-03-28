@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjdlppdak0qwg"]
+
+[ext_resource type="Script" path="res://src/ui/MainUi.gd" id="1_6yf67"]
+[ext_resource type="Script" path="res://src/ui/BuildingBtn.gd" id="2_kmwhb"]
+
+[node name="MainUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6yf67")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -54.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 5
+
+[node name="solar_panel" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Solar
+Panel
+"
+script = ExtResource("2_kmwhb")
+
+[node name="energy_storage" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Energy 
+Storage"
+script = ExtResource("2_kmwhb")
+
+[node name="water_factory" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Water
+Factory"
+script = ExtResource("2_kmwhb")
+
+[node name="farm" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Farm"
+script = ExtResource("2_kmwhb")
+
+[node name="factory" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Factory"
+script = ExtResource("2_kmwhb")
+
+[node name="dronehub" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Dronehub
+"
+script = ExtResource("2_kmwhb")
+
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/solar_panel" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/solar_panel" to="Panel/HBoxContainer/solar_panel" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/energy_storage" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/energy_storage" to="Panel/HBoxContainer/solar_panel" method="_on_energy_storage_pressed"]
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/water_factory" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/water_factory" to="Panel/HBoxContainer/solar_panel" method="_on_water_factory_pressed"]
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/farm" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/farm" to="Panel/HBoxContainer/solar_panel" method="_on_farm_pressed"]
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/factory" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/factory" to="Panel/HBoxContainer/solar_panel" method="_on_factory_pressed"]
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/dronehub" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/dronehub" to="Panel/HBoxContainer/solar_panel" method="_on_dronehub_pressed"]

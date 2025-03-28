@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://8cntdv13d7nm"]
+
+[ext_resource type="SpriteFrames" uid="uid://bphbaeqqkncpj" path="res://scenes/buildings/solarpanel/SolarPanelFrames.tres" id="1_hw455"]
+[ext_resource type="Script" path="res://src/buildings/SolarPanel.gd" id="1_y518o"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StatePlacing.gd" id="2_ipgxl"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateBuild.gd" id="4_6q8i2"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/SolarPanelStateActive.gd" id="5_0s3qf"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateInactive.gd" id="6_he10b"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateNoPower.gd" id="7_h0yjq"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateDeconstruct.gd" id="8_t12uy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm77g"]
+size = Vector2(826, 512)
+
+[node name="solarpanel" type="Node2D"]
+script = ExtResource("1_y518o")
+
+[node name="Area2D" type="Area2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.1, 0.1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = ExtResource("1_hw455")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 176)
+shape = SubResource("RectangleShape2D_qm77g")
+
+[node name="placing" type="Node" parent="."]
+script = ExtResource("2_ipgxl")
+
+[node name="build" type="Node" parent="."]
+script = ExtResource("4_6q8i2")
+
+[node name="active" type="Node" parent="."]
+script = ExtResource("5_0s3qf")
+
+[node name="inactive" type="Node" parent="."]
+script = ExtResource("6_he10b")
+
+[node name="nopower" type="Node" parent="."]
+script = ExtResource("7_h0yjq")
+
+[node name="deconstruct" type="Node" parent="."]
+script = ExtResource("8_t12uy")
+
+[connection signal="area_entered" from="Area2D" to="placing" method="area_entered"]
+[connection signal="area_exited" from="Area2D" to="placing" method="area_exited"]
+[connection signal="_on_state_change" from="placing" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="build" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="active" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="inactive" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="nopower" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="deconstruct" to="." method="_on_state_change"]

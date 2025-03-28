@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://b6npi6er2qvuo"]
+[gd_scene load_steps=3 format=3 uid="uid://b6npi6er2qvuo"]
+
+[ext_resource type="PackedScene" uid="uid://dmooracqst147" path="res://scenes/LevelContainer.tscn" id="1_d5c5c"]
+[ext_resource type="Script" path="res://src/Main.gd" id="1_lpl7q"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_lpl7q")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGameBtn" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Start Game"
+
+[node name="LevelContainer" parent="." instance=ExtResource("1_d5c5c")]

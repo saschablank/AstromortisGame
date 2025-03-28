@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b67bk174t6lou"]
+
+[ext_resource type="Script" path="res://src/GroundGenerator.gd" id="1_oorny"]
+[ext_resource type="Texture2D" uid="uid://bxqjw8wwcoy5u" path="res://assets/Dronehub_Test.png" id="2_pcwdc"]
+
+[node name="Level" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_oorny")
+tiles_folder = "res://levelTiles/level01/"
+level = "level02"
+
+[node name="DronehubTest" type="Sprite2D" parent="."]
+position = Vector2(3127, 1358)
+texture = ExtResource("2_pcwdc")

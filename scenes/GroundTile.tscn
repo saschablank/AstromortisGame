@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xj2ntm5cgbl6"]
+
+[ext_resource type="Texture2D" uid="uid://x6icc8qni72m" path="res://levelTiles/level01/0.png" id="1_pmlyp"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(512, 512)
+texture = ExtResource("1_pmlyp")

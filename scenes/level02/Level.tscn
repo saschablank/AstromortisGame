@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvurcqumsd4wy"]
+
+[ext_resource type="Script" path="res://src/GroundGenerator.gd" id="1_msfgc"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_msfgc")
+tiles_folder = "res://levelTiles/level01/"
+level = "level01"

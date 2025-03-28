@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmooracqst147"]
+
+[ext_resource type="Script" path="res://src/states/LevelContainerStates/StateLoadLevel.gd" id="1_0my81"]
+[ext_resource type="Script" path="res://src/LevelContainer.gd" id="1_hju31"]
+[ext_resource type="Script" path="res://src/RtsCamera.gd" id="3_4fs0e"]
+[ext_resource type="Script" path="res://src/states/LevelContainerStates/StateLevelDefault.gd" id="3_r6lic"]
+[ext_resource type="Script" path="res://src/states/LevelContainerStates/StatePlaceBuilding.gd" id="4_pv1ck"]
+[ext_resource type="PackedScene" uid="uid://cjdlppdak0qwg" path="res://scenes/ui/MainUi.tscn" id="6_8i3py"]
+[ext_resource type="Script" path="res://scenes/EnergySystem.gd" id="7_g6cvd"]
+
+[node name="LevelContainer" type="Node2D"]
+script = ExtResource("1_hju31")
+
+[node name="load_level" type="Node" parent="." node_paths=PackedStringArray("level_node_to_use")]
+script = ExtResource("1_0my81")
+level_node_to_use = NodePath("..")
+
+[node name="default" type="Node" parent="." node_paths=PackedStringArray("state_owner")]
+script = ExtResource("3_r6lic")
+state_owner = NodePath("..")
+
+[node name="place_building" type="Node" parent="." node_paths=PackedStringArray("state_owner")]
+script = ExtResource("4_pv1ck")
+state_owner = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("3_4fs0e")
+camera_speed = 2000
+min_zoom = Vector2(0.2, 0.2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="MainUi" parent="Camera2D/CanvasLayer" instance=ExtResource("6_8i3py")]
+
+[node name="LevelNode" type="Node2D" parent="."]
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="EnergySystem" type="Node" parent="."]
+script = ExtResource("7_g6cvd")
+
+[connection signal="_on_state_change" from="load_level" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="default" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="place_building" to="." method="_on_state_change"]
+[connection signal="_on_building_pressed" from="Camera2D/CanvasLayer/MainUi" to="." method="_on_main_ui__on_building_pressed"]

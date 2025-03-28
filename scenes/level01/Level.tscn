@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvqpwii427p1f"]
+
+[ext_resource type="Script" path="res://src/GroundGenerator.gd" id="1_p6cf4"]
+
+[sub_resource type="TileSet" id="TileSet_sgjhd"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(128, 64)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_p6cf4")
+tiles_folder = "res://levelTiles/level01/"
+level = "level01"
+
+[node name="ground_grid" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_sgjhd")

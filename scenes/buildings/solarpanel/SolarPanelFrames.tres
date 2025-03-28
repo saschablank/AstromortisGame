@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bphbaeqqkncpj"]
+
+[ext_resource type="Texture2D" uid="uid://daxxnlkxglti7" path="res://scenes/buildings/solarpanel/solar_panel_0.png" id="1_4fe3p"]
+[ext_resource type="Texture2D" uid="uid://bfdnhyhx80bhi" path="res://scenes/buildings/solarpanel/solar_panel_1.png" id="2_qj8ls"]
+[ext_resource type="Texture2D" uid="uid://dl1uigmyec28o" path="res://scenes/buildings/solarpanel/solar_panel_2.png" id="3_d2cxb"]
+[ext_resource type="Texture2D" uid="uid://c2m7ctowprbx5" path="res://scenes/buildings/solarpanel/solar_panel_3.png" id="4_nvmqb"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4fe3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qj8ls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d2cxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nvmqb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
