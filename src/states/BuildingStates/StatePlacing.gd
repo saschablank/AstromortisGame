@@ -24,4 +24,11 @@ func can_be_placed() -> bool:
 	return true	
 
 func process_input(event: InputEvent) -> void:
-	pass
+	if event is InputEventKey:
+		if event.keycode == KEY_R and event.is_pressed() == false:
+			var anim_sprite: AnimatedSprite2D = get_parent().get_node("Area2D/AnimatedSprite2D")
+			if anim_sprite != null:
+				if anim_sprite.frame == 0:
+					anim_sprite.frame = 1
+				else:
+					anim_sprite.frame = 0

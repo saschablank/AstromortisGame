@@ -24,3 +24,6 @@ func area_exited(area_2d: Area2D):
 
 func process_input(event: InputEvent) -> void:
 	pass
+	
+func state_init():
+	$"../InfoIcons".set_info_icons_active(InfoIcons.WARNING_ICON, InfoIcons.NO_ENERGY_ICON)

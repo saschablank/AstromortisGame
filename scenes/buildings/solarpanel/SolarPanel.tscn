@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://8cntdv13d7nm"]
+[gd_scene load_steps=11 format=3 uid="uid://8cntdv13d7nm"]
 
 [ext_resource type="SpriteFrames" uid="uid://bphbaeqqkncpj" path="res://scenes/buildings/solarpanel/SolarPanelFrames.tres" id="1_hw455"]
 [ext_resource type="Script" path="res://src/buildings/SolarPanel.gd" id="1_y518o"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/states/BuildingStates/StateInactive.gd" id="6_he10b"]
 [ext_resource type="Script" path="res://src/states/BuildingStates/StateNoPower.gd" id="7_h0yjq"]
 [ext_resource type="Script" path="res://src/states/BuildingStates/StateDeconstruct.gd" id="8_t12uy"]
+[ext_resource type="PackedScene" uid="uid://dcx5jepursgqr" path="res://scenes/buildings/BuildingEffekts/InfoIcons.tscn" id="9_uw67i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qm77g"]
 size = Vector2(826, 512)
@@ -21,6 +22,7 @@ scale = Vector2(0.1, 0.1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 sprite_frames = ExtResource("1_hw455")
+speed_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 176)
@@ -43,6 +45,8 @@ script = ExtResource("7_h0yjq")
 
 [node name="deconstruct" type="Node" parent="."]
 script = ExtResource("8_t12uy")
+
+[node name="InfoIcons" parent="." instance=ExtResource("9_uw67i")]
 
 [connection signal="area_entered" from="Area2D" to="placing" method="area_entered"]
 [connection signal="area_exited" from="Area2D" to="placing" method="area_exited"]

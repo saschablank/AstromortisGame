@@ -31,3 +31,6 @@ func area_exited(area_2d: Area2D):
 
 func process_input(event: InputEvent) -> void:
 	pass
+	
+func state_init():
+	pass

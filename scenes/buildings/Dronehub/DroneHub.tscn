@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvyxsgmbmu6d2"]
+
+[ext_resource type="Script" path="res://src/states/BuildingStates/StatePlacing.gd" id="1_d4dvu"]
+[ext_resource type="Script" path="res://src/buildings/DroneHub.gd" id="1_xdjfv"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateBuild.gd" id="2_qckf0"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/DroneHubStateActive.gd" id="4_81851"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateInactive.gd" id="4_mlds8"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateNoPower.gd" id="5_wutsl"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateDeconstruct.gd" id="6_p057c"]
+[ext_resource type="SpriteFrames" uid="uid://cfjtj88l40t7l" path="res://scenes/buildings/Dronehub/DroneHubFrames.tres" id="8_3v1n1"]
+[ext_resource type="PackedScene" uid="uid://dcx5jepursgqr" path="res://scenes/buildings/BuildingEffekts/InfoIcons.tscn" id="9_5mnm1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md6ar"]
+size = Vector2(202, 86)
+
+[node name="DroneHub" type="Node2D"]
+script = ExtResource("1_xdjfv")
+
+[node name="placing" type="Node" parent="."]
+script = ExtResource("1_d4dvu")
+
+[node name="build" type="Node" parent="."]
+script = ExtResource("2_qckf0")
+
+[node name="active" type="Node" parent="."]
+script = ExtResource("4_81851")
+
+[node name="inactive" type="Node" parent="."]
+script = ExtResource("4_mlds8")
+
+[node name="nopower" type="Node" parent="."]
+script = ExtResource("5_wutsl")
+
+[node name="deconstruct" type="Node" parent="."]
+script = ExtResource("6_p057c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("8_3v1n1")
+speed_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 21)
+shape = SubResource("RectangleShape2D_md6ar")
+
+[node name="InfoIcons" parent="." instance=ExtResource("9_5mnm1")]
+
+[connection signal="_on_state_change" from="placing" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="build" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="active" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="inactive" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="nopower" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="deconstruct" to="." method="_on_state_change"]
+[connection signal="area_entered" from="Area2D" to="placing" method="area_entered"]
+[connection signal="area_exited" from="Area2D" to="placing" method="area_exited"]

@@ -15,23 +15,3 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	_on_building_btn_pressed.emit(name)
-
-
-func _on_energy_storage_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_water_factory_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_farm_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_factory_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_dronehub_pressed() -> void:
-	pass # Replace with function body.

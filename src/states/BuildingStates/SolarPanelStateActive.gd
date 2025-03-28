@@ -6,7 +6,9 @@ var rnd = RandomNumberGenerator.new()
 func _ready() -> void:
 	pass # Replace with function body.
 	
-
+func state_init():
+	$"../InfoIcons".set_inactive()
+	
 func process_state(delta: float):
 	if GameStatics.IS_NIGHTTIME == false:
 		if GameStatics.CURRENT_WEATHER == GameStatics.WEATHER_SUNNY:

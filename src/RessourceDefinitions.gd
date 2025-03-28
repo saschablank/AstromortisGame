@@ -215,34 +215,34 @@ static var icon_images: Dictionary = {}
 static var icon_slot_images: Dictionary = {}
 
 
-#static func blit_icon_texture(rect: Rect2, resize_size: Vector2i = Vector2(-1,-1)):
-	#var icon_to_return: Image = null
-	#icon_to_return = Image.create_empty(32, 32, false, Image.FORMAT_RGBA8)
-	#icon_to_return.blit_rect(preload("res://Ui/icons/icons.png").get_image(), rect, Vector2(0, 0))
-	#if resize_size.x > -1 and resize_size.y > -1:
-		#icon_to_return.resize(resize_size.x, resize_size.y)
-	#return ImageTexture.create_from_image(icon_to_return)
-	#
-#static func blit_slot_icon(rect: Rect2, resize_size: Vector2i = Vector2(-1,-1)):
-	#var slot_to_return: Image = null
-	#const SLOT_SPACE: Vector2 = Vector2(38,38)
-	#const SLOT_OFFSET: Vector2 = Vector2(13,13)
-	#var ressource_icon:Image = RessourceDefinitions.blit_icon_texture(rect, SLOT_SPACE).get_image()
-	#slot_to_return = preload("res://Ui/Themes/emoty_slot.png").get_image()
-	#slot_to_return.convert(Image.FORMAT_RGBA8)
-	#slot_to_return.blend_rect(ressource_icon, Rect2(0, 0, SLOT_SPACE.x, SLOT_SPACE.y),SLOT_OFFSET)
-	#if resize_size.x > 0 and resize_size.y > 0:
-		#slot_to_return.resize(resize_size.x, resize_size.y)
-	#return ImageTexture.create_from_image(slot_to_return)
-	#
-#static func blit_slot_deny_icon(rect: Rect2, resize_size: Vector2 = Vector2(-1,-1)):
-	#const SLOT_SPACE: Vector2 = Vector2(24,24)
-	#const SLOT_OFFSET: Vector2 = Vector2(4,4)
-	#var slot_image: Image = blit_slot_icon(rect,resize_size).get_image()
-	#var deny_texture: Image = blit_icon_texture(ICON_MAP["deny"], SLOT_SPACE).get_image()
-#
-	#slot_image.blend_rect(deny_texture, Rect2(0, 0, SLOT_SPACE.x, SLOT_SPACE.y),SLOT_OFFSET )
-	#if resize_size.x > 0 and resize_size.y > 0:
-		#slot_image.resize(resize_size.x, resize_size.y)
-	#return ImageTexture.create_from_image(slot_image)
-	#
+static func blit_icon_texture(rect: Rect2, resize_size: Vector2i = Vector2(-1,-1)):
+	var icon_to_return: Image = null
+	icon_to_return = Image.create_empty(32, 32, false, Image.FORMAT_RGBA8)
+	icon_to_return.blit_rect(preload("res://assets/Ui/icons/icons.png").get_image(), rect, Vector2(0, 0))
+	if resize_size.x > -1 and resize_size.y > -1:
+		icon_to_return.resize(resize_size.x, resize_size.y)
+	return ImageTexture.create_from_image(icon_to_return)
+	
+static func blit_slot_icon(rect: Rect2, resize_size: Vector2i = Vector2(-1,-1)):
+	var slot_to_return: Image = null
+	const SLOT_SPACE: Vector2 = Vector2(38,38)
+	const SLOT_OFFSET: Vector2 = Vector2(13,13)
+	var ressource_icon:Image = RessourceDefinitions.blit_icon_texture(rect, SLOT_SPACE).get_image()
+	slot_to_return = preload("res://assets/Ui/icons/icons.png").get_image()
+	slot_to_return.convert(Image.FORMAT_RGBA8)
+	slot_to_return.blend_rect(ressource_icon, Rect2(0, 0, SLOT_SPACE.x, SLOT_SPACE.y),SLOT_OFFSET)
+	if resize_size.x > 0 and resize_size.y > 0:
+		slot_to_return.resize(resize_size.x, resize_size.y)
+	return ImageTexture.create_from_image(slot_to_return)
+	
+static func blit_slot_deny_icon(rect: Rect2, resize_size: Vector2 = Vector2(-1,-1)):
+	const SLOT_SPACE: Vector2 = Vector2(24,24)
+	const SLOT_OFFSET: Vector2 = Vector2(4,4)
+	var slot_image: Image = blit_slot_icon(rect,resize_size).get_image()
+	var deny_texture: Image = blit_icon_texture(ICON_MAP["deny"], SLOT_SPACE).get_image()
+
+	slot_image.blend_rect(deny_texture, Rect2(0, 0, SLOT_SPACE.x, SLOT_SPACE.y),SLOT_OFFSET )
+	if resize_size.x > 0 and resize_size.y > 0:
+		slot_image.resize(resize_size.x, resize_size.y)
+	return ImageTexture.create_from_image(slot_image)
+	

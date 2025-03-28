@@ -1,7 +1,7 @@
 extends "res://src/states/StateBase.gd"
 
 const SOLAR_PANEL = preload("res://scenes/buildings/solarpanel/SolarPanel.tscn")
-
+const DRONE_HUB = preload("res://scenes/buildings/Dronehub/DroneHub.tscn")
 
 var building_to_place: BuildingBase = null
 
@@ -16,21 +16,7 @@ func process_state(delta: float):
 					)
 				)
 
-
-func area_entered(area_2d: Area2D):
-	pass
-
-
-func area_exited(area_2d: Area2D):
-	pass
-
-
-func create_new_building(building_name: String) -> void:
-	if building_name == "solar_panel":
-		building_to_place = SOLAR_PANEL.instantiate()
-		get_parent().get_node("Buildings").add_child(building_to_place)
-		
-
+	
 func process_input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		if event.button_mask == MOUSE_BUTTON_LEFT and event.is_pressed() == true:
@@ -42,3 +28,12 @@ func process_input(event: InputEvent) -> void:
 				_on_state_change.emit("default")
 				building_to_place.queue_free()
 				building_to_place = null
+
+
+func create_new_building(building_name: String) -> void:
+	if building_name == "solar_panel":
+		building_to_place = SOLAR_PANEL.instantiate()
+		get_parent().get_node("Buildings").add_child(building_to_place)
+	elif building_name == "dronehub":
+		building_to_place = DRONE_HUB.instantiate()
+		get_parent().get_node("Buildings").add_child(building_to_place)

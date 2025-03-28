@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl1uigmyec28o"
-path="res://.godot/imported/solar_panel_2.png-35ada90f5ac46ed2f74dbcd024eb25ab.ctex"
+uid="uid://c7cmr5yj87dp1"
+path="res://.godot/imported/Drohne_Front_Left4.png-4417b08a97fc0ec8cb05520e2206dc9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/buildings/solarpanel/solar_panel_2.png"
-dest_files=["res://.godot/imported/solar_panel_2.png-35ada90f5ac46ed2f74dbcd024eb25ab.ctex"]
+source_file="res://scenes/objects/drone/Front_Left/Drohne_Front_Left4.png"
+dest_files=["res://.godot/imported/Drohne_Front_Left4.png-4417b08a97fc0ec8cb05520e2206dc9c.ctex"]
 
 [params]
 

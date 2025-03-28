@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcx5jepursgqr"]
+
+[ext_resource type="Script" path="res://src/buildings/InfoIcons.gd" id="1_o7h5c"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0u58k"]
+size = Vector2(128, 64)
+
+[sub_resource type="Animation" id="Animation_jr2i6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1v1ma"]
+resource_name = "blink"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x6u5x"]
+resource_name = "test"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_es3bp"]
+_data = {
+"RESET": SubResource("Animation_jr2i6"),
+"blink": SubResource("Animation_1v1ma"),
+"test": SubResource("Animation_x6u5x")
+}
+
+[node name="InfoIcons" type="Node2D"]
+script = ExtResource("1_o7h5c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_0u58k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_es3bp")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
