@@ -11,7 +11,6 @@ tile_size = Vector2i(128, 64)
 script = ExtResource("1_p6cf4")
 tiles_folder = "res://levelTiles/level01/"
 level = "level01"
-is_map_generated = false
 
 [node name="ground_grid" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_sgjhd")

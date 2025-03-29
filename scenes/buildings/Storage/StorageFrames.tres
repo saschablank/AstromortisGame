@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dbwho0tbk6uei" path="res://scenes/buildings/Storage/storage_0.png" id="1_1othq"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yxsn3"]
-load_path = "res://.godot/imported/storage_1.png-c190e4f71f5425b1ca22b9f27d076837.ctex"
 
 [resource]
 animations = [{

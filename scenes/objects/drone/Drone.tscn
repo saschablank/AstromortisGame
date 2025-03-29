@@ -1,3 +1,47 @@
-[gd_scene format=3 uid="uid://mhsmdjsag3uq"]
+[gd_scene load_steps=9 format=3 uid="uid://mhsmdjsag3uq"]
+
+[ext_resource type="Script" path="res://src/objects/TransportDrones.gd" id="1_h1e7o"]
+[ext_resource type="Script" path="res://src/states/DroneStates/Idle.gd" id="2_bva7y"]
+[ext_resource type="Script" path="res://src/states/DroneStates/ToPickup.gd" id="3_37qfd"]
+[ext_resource type="Script" path="res://src/states/DroneStates/Pickup.gd" id="4_dx18f"]
+[ext_resource type="Script" path="res://src/states/DroneStates/ToDropoff.gd" id="5_0umjq"]
+[ext_resource type="Script" path="res://src/states/DroneStates/Dropoff.gd" id="6_fehbg"]
+[ext_resource type="Script" path="res://src/states/DroneStates/BackToHub.gd" id="7_02wdi"]
+[ext_resource type="SpriteFrames" uid="uid://b3ap7do28du8p" path="res://scenes/objects/drone/DronesFrames.tres" id="8_q84t0"]
 
 [node name="Drone" type="Node2D"]
+script = ExtResource("1_h1e7o")
+
+[node name="idle" type="Node" parent="."]
+script = ExtResource("2_bva7y")
+
+[node name="topickup" type="Node" parent="."]
+script = ExtResource("3_37qfd")
+
+[node name="pickup" type="Node" parent="."]
+script = ExtResource("4_dx18f")
+
+[node name="todropoff" type="Node" parent="."]
+script = ExtResource("5_0umjq")
+
+[node name="dropoff" type="Node" parent="."]
+script = ExtResource("6_fehbg")
+
+[node name="backtohub" type="Node" parent="."]
+script = ExtResource("7_02wdi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("8_q84t0")
+animation = &"front"
+speed_scale = 10.0
+
+[connection signal="_on_state_change" from="idle" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="topickup" to="." method="_on_state_change"]
+[connection signal="_on_target_reached" from="topickup" to="." method="_on_target_reached"]
+[connection signal="_on_state_change" from="pickup" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="todropoff" to="." method="_on_state_change"]
+[connection signal="_on_target_reached" from="todropoff" to="." method="_on_target_reached"]
+[connection signal="_on_state_change" from="dropoff" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="backtohub" to="." method="_on_state_change"]
+[connection signal="_on_target_reached" from="backtohub" to="." method="_on_target_reached"]

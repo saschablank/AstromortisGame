@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://b3ap7do28du8p"]
+
+[ext_resource type="Texture2D" uid="uid://bb2msv7y0bbsn" path="res://scenes/objects/drone/Front/Drohne_Front_1.png" id="1_2g0o3"]
+[ext_resource type="Texture2D" uid="uid://dum8xkri42c0h" path="res://scenes/objects/drone/Front/Drohne_Front_2.png" id="2_4uinj"]
+[ext_resource type="Texture2D" uid="uid://cwxaynveamtgm" path="res://scenes/objects/drone/Front/Drohne_Front_3.png" id="3_5qiut"]
+[ext_resource type="Texture2D" uid="uid://cuv2hkr4m31dy" path="res://scenes/objects/drone/Front/Drohne_Front_4.png" id="4_m7inp"]
+[ext_resource type="Texture2D" uid="uid://cdv8w4wu0s185" path="res://scenes/objects/drone/Front_Left/Drohne_Front_Left1.png" id="5_34mke"]
+[ext_resource type="Texture2D" uid="uid://da8sgjym4pjti" path="res://scenes/objects/drone/Front_Left/Drohne_Front_Left2.png" id="6_ayfyi"]
+[ext_resource type="Texture2D" uid="uid://c4kxswpoilpfh" path="res://scenes/objects/drone/Front_Left/Drohne_Front_Left3.png" id="7_3me7g"]
+[ext_resource type="Texture2D" uid="uid://c7cmr5yj87dp1" path="res://scenes/objects/drone/Front_Left/Drohne_Front_Left4.png" id="8_mjkqy"]
+[ext_resource type="Texture2D" uid="uid://c2m8ws2uu7tty" path="res://scenes/objects/drone/Front_Right/Drohne_Front_Right1.png" id="9_3djej"]
+[ext_resource type="Texture2D" uid="uid://rtvsd771grat" path="res://scenes/objects/drone/Front_Right/Drohne_Front_Right2.png" id="10_wy2q7"]
+[ext_resource type="Texture2D" uid="uid://cw85l7kv6uehr" path="res://scenes/objects/drone/Front_Right/Drohne_Front_Right3.png" id="11_mbdcu"]
+[ext_resource type="Texture2D" uid="uid://4c1spepunr8v" path="res://scenes/objects/drone/Front_Right/Drohne_Front_Right4.png" id="12_uigep"]
+[ext_resource type="Texture2D" uid="uid://b5nobqtcm5s7c" path="res://scenes/objects/drone/Side/Drohne_Side1.png" id="13_7khdr"]
+[ext_resource type="Texture2D" uid="uid://5kjpepnqpmyf" path="res://scenes/objects/drone/Side/Drohne_Side2.png" id="14_s53u6"]
+[ext_resource type="Texture2D" uid="uid://c16bfkn3ocoi" path="res://scenes/objects/drone/Side/Drohne_Side3.png" id="15_3yier"]
+[ext_resource type="Texture2D" uid="uid://b4u5yvk0ln0hw" path="res://scenes/objects/drone/Side/Drohne_Side4.png" id="16_mv5p0"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2g0o3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4uinj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5qiut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m7inp")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_34mke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ayfyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3me7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mjkqy")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_3djej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wy2q7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_mbdcu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_uigep")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_7khdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_s53u6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_3yier")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_mv5p0")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]

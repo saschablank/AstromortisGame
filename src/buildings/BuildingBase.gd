@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name BuildingBase
 const LocalStorage = preload("res://src/buildings/LocalStorage.gd")
 
