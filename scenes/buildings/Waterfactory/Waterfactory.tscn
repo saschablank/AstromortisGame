@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://77fbngthkuhy"]
+
+[ext_resource type="Script" path="res://src/buildings/Waterfactory.gd" id="1_yhukg"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/WaterFactoryStatePlacing.gd" id="2_w5xt2"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateBuild.gd" id="3_dxk4d"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StorageStateActive.gd" id="4_kdtiv"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateInactive.gd" id="5_r4n2h"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateNoPower.gd" id="6_pflj3"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateDeconstruct.gd" id="7_y450h"]
+[ext_resource type="SpriteFrames" uid="uid://e68eyyw6sg8b" path="res://scenes/buildings/Waterfactory/WaterfactoryFrames.tres" id="8_j7dcu"]
+[ext_resource type="PackedScene" uid="uid://dcx5jepursgqr" path="res://scenes/buildings/BuildingEffekts/InfoIcons.tscn" id="9_8ceei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86eti"]
+size = Vector2(156, 151)
+
+[node name="Waterfactory" type="Node2D"]
+script = ExtResource("1_yhukg")
+
+[node name="placing" type="Node" parent="."]
+script = ExtResource("2_w5xt2")
+
+[node name="build" type="Node" parent="."]
+script = ExtResource("3_dxk4d")
+
+[node name="active" type="Node" parent="."]
+script = ExtResource("4_kdtiv")
+
+[node name="inactive" type="Node" parent="."]
+script = ExtResource("5_r4n2h")
+
+[node name="nopower" type="Node" parent="."]
+script = ExtResource("6_pflj3")
+
+[node name="deconstruct" type="Node" parent="."]
+script = ExtResource("7_y450h")
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 5
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("8_j7dcu")
+speed_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 20.5)
+shape = SubResource("RectangleShape2D_86eti")
+
+[node name="InfoIcons" parent="." instance=ExtResource("9_8ceei")]
+
+[connection signal="_on_state_change" from="placing" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="build" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="active" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="inactive" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="nopower" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="deconstruct" to="." method="_on_state_change"]
+[connection signal="area_entered" from="Area2D" to="placing" method="area_entered"]
+[connection signal="area_exited" from="Area2D" to="placing" method="area_exited"]
+[connection signal="body_entered" from="Area2D" to="placing" method="body_entered"]
+[connection signal="body_exited" from="Area2D" to="placing" method="body_exited"]

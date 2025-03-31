@@ -42,7 +42,7 @@ text = "Energy
 Storage"
 script = ExtResource("2_kmwhb")
 
-[node name="water_factory" type="Button" parent="Panel/HBoxContainer"]
+[node name="waterfactory" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 text = "Water
 Factory"
@@ -64,15 +64,22 @@ text = "Dronehub
 "
 script = ExtResource("2_kmwhb")
 
+[node name="storage" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Storage"
+script = ExtResource("2_kmwhb")
+
 [connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/solar_panel" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/solar_panel" to="Panel/HBoxContainer/solar_panel" method="_on_pressed"]
 [connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/energy_storage" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/energy_storage" to="Panel/HBoxContainer/energy_storage" method="_on_pressed"]
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/water_factory" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/water_factory" to="Panel/HBoxContainer/water_factory" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/waterfactory" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/waterfactory" to="Panel/HBoxContainer/waterfactory" method="_on_pressed"]
 [connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/farm" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/farm" to="Panel/HBoxContainer/farm" method="_on_pressed"]
 [connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/factory" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/factory" to="Panel/HBoxContainer/factory" method="_on_pressed"]
 [connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/dronehub" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/dronehub" to="Panel/HBoxContainer/dronehub" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/storage" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/storage" to="Panel/HBoxContainer/storage" method="_on_pressed"]

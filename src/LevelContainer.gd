@@ -1,6 +1,7 @@
 extends Node2D
 
 const GroundGenerator = preload("res://src/GroundGenerator.gd")
+const BuildingQuerys = preload("res://src/buildings/BuildingQuerys.gd")
 
 var states: Dictionary = {}
 var active_state: StateBase = null

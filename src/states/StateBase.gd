@@ -29,8 +29,21 @@ func area_exited(area_2d: Area2D):
 	pass
 
 
+func body_entered(body_2d: Node2D):
+	pass
+
+
+func body_exited(body_2d: Node2D):
+	pass
+
+
 func process_input(event: InputEvent) -> void:
 	pass
-	
+
+
 func state_init():
+	pass
+
+
+func state_leave():
 	pass

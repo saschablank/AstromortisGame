@@ -1,18 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://dba5c7qeb4srg"]
+[gd_scene load_steps=11 format=3 uid="uid://dba5c7qeb4srg"]
 
 [ext_resource type="SpriteFrames" uid="uid://bigmjyxv3tr00" path="res://scenes/buildings/Storage/StorageFrames.tres" id="1_5mpbh"]
+[ext_resource type="Script" path="res://src/buildings/Storage.gd" id="1_kdvvo"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StatePlacing.gd" id="2_cqpbw"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateBuild.gd" id="3_wr5fy"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateInactive.gd" id="4_3mgcm"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StorageStateActive.gd" id="4_cguox"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateNoPower.gd" id="5_ulpd0"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateDeconstruct.gd" id="6_oefp5"]
+[ext_resource type="PackedScene" uid="uid://dcx5jepursgqr" path="res://scenes/buildings/BuildingEffekts/InfoIcons.tscn" id="9_y8e5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrqon"]
 size = Vector2(179, 115)
 
 [node name="Storage" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
+script = ExtResource("1_kdvvo")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("1_5mpbh")
+speed_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 12.5)
 shape = SubResource("RectangleShape2D_nrqon")
+
+[node name="placing" type="Node" parent="."]
+script = ExtResource("2_cqpbw")
+
+[node name="build" type="Node" parent="."]
+script = ExtResource("3_wr5fy")
+
+[node name="active" type="Node" parent="."]
+script = ExtResource("4_cguox")
+
+[node name="inactive" type="Node" parent="."]
+script = ExtResource("4_3mgcm")
+
+[node name="nopower" type="Node" parent="."]
+script = ExtResource("5_ulpd0")
+
+[node name="deconstruct" type="Node" parent="."]
+script = ExtResource("6_oefp5")
+
+[node name="InfoIcons" parent="." instance=ExtResource("9_y8e5u")]
+
+[connection signal="area_entered" from="Area2D" to="placing" method="area_entered"]
+[connection signal="area_exited" from="Area2D" to="placing" method="area_exited"]
+[connection signal="body_entered" from="Area2D" to="placing" method="body_entered"]
+[connection signal="body_exited" from="Area2D" to="placing" method="body_exited"]
+[connection signal="_on_state_change" from="placing" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="build" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="active" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="inactive" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="nopower" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="deconstruct" to="." method="_on_state_change"]

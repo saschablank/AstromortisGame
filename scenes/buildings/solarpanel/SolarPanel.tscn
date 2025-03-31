@@ -14,6 +14,8 @@
 size = Vector2(826, 512)
 
 [node name="solarpanel" type="Node2D"]
+z_index = 5
+y_sort_enabled = true
 script = ExtResource("1_y518o")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -50,6 +52,8 @@ script = ExtResource("8_t12uy")
 
 [connection signal="area_entered" from="Area2D" to="placing" method="area_entered"]
 [connection signal="area_exited" from="Area2D" to="placing" method="area_exited"]
+[connection signal="body_entered" from="Area2D" to="placing" method="body_entered"]
+[connection signal="body_exited" from="Area2D" to="placing" method="body_exited"]
 [connection signal="_on_state_change" from="placing" to="." method="_on_state_change"]
 [connection signal="_on_state_change" from="build" to="." method="_on_state_change"]
 [connection signal="_on_state_change" from="active" to="." method="_on_state_change"]

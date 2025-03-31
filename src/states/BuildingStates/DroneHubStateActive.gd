@@ -3,8 +3,7 @@ extends StateBase
 var can_drones_operate: bool = true
 
 
-func state_init():
-	$"../InfoIcons".set_inactive()
+func state_init():	
 	var parent = get_parent()
 	if len(parent.drones) == 0:
 		parent.create_drones(5)

@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://e68eyyw6sg8b"]
+
+[ext_resource type="Texture2D" uid="uid://8eei2fd0qlg7" path="res://scenes/buildings/Waterfactory/waterfactory_1.png" id="1_ttl7w"]
+[ext_resource type="Texture2D" uid="uid://cotpj2dakmt57" path="res://scenes/buildings/Waterfactory/waterfactory_2.png" id="2_6psi6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ttl7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6psi6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

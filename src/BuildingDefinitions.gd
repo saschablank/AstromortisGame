@@ -13,7 +13,7 @@ static var TILE_TYPE_COPPER = "copper_ore"
 static var TILE_TYPE_GOLD = "gold_ore"
 static var TILE_TYPE_TRITANIUM = "tritanium"
 
-static var BUILDING_TYPE_HYDROGEN_FACTORY = "hydrogen_factory"
+static var BUILDING_TYPE_HYDROGEN_FACTORY = "waterfactory"
 static var BUILDING_TYPE_CHEMICAL_PLANT = "chemical_plant"
 static var BUILDING_TYPE_FACTORY = "factory"
 static var BUILDING_TYPE_SOLAR_PANEL = "solarpanel"

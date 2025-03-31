@@ -1,8 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bigmjyxv3tr00"]
 
 [ext_resource type="Texture2D" uid="uid://dbwho0tbk6uei" path="res://scenes/buildings/Storage/storage_0.png" id="1_1othq"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yxsn3"]
+[ext_resource type="Texture2D" uid="uid://dl6jrvcb3dlf2" path="res://scenes/buildings/Storage/storage_3.png" id="2_ghms1"]
 
 [resource]
 animations = [{
@@ -11,7 +10,7 @@ animations = [{
 "texture": ExtResource("1_1othq")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_yxsn3")
+"texture": ExtResource("2_ghms1")
 }],
 "loop": true,
 "name": &"default",

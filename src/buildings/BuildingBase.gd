@@ -1,5 +1,6 @@
 extends Node2D
 class_name BuildingBase
+
 const LocalStorage = preload("res://src/buildings/LocalStorage.gd")
 
 var states: Dictionary= {}
@@ -27,7 +28,10 @@ func _input(event: InputEvent) -> void:
 	if active_state != null:
 		active_state.process_input(event)
 
+
 func _on_state_change(new_state: String):
+	if active_state != null:
+		active_state.state_leave()
 	active_state = states[new_state]
 	active_state.state_init()
 
