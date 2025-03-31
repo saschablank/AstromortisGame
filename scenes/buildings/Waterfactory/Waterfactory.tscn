@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/buildings/Waterfactory.gd" id="1_yhukg"]
 [ext_resource type="Script" path="res://src/states/BuildingStates/WaterFactoryStatePlacing.gd" id="2_w5xt2"]
 [ext_resource type="Script" path="res://src/states/BuildingStates/StateBuild.gd" id="3_dxk4d"]
-[ext_resource type="Script" path="res://src/states/BuildingStates/StorageStateActive.gd" id="4_kdtiv"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateActiveBaseMaterial.gd" id="4_646f0"]
 [ext_resource type="Script" path="res://src/states/BuildingStates/StateInactive.gd" id="5_r4n2h"]
 [ext_resource type="Script" path="res://src/states/BuildingStates/StateNoPower.gd" id="6_pflj3"]
 [ext_resource type="Script" path="res://src/states/BuildingStates/StateDeconstruct.gd" id="7_y450h"]
@@ -23,7 +23,7 @@ script = ExtResource("2_w5xt2")
 script = ExtResource("3_dxk4d")
 
 [node name="active" type="Node" parent="."]
-script = ExtResource("4_kdtiv")
+script = ExtResource("4_646f0")
 
 [node name="inactive" type="Node" parent="."]
 script = ExtResource("5_r4n2h")

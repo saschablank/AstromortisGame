@@ -17,6 +17,7 @@ func _ready() -> void:
 	_on_state_change("placing")
 	$Area2D/AnimatedSprite2D.play("default")
 	local_storage.parent_building = self
+	
 
 
 func _process(delta: float) -> void:

@@ -15,4 +15,11 @@ func create_drones(amount:int = 1):
 	for i in range(0,amount):
 		var new_drone = DRONE.instantiate()
 		get_parent().get_parent().add_child(new_drone)
+		drones.append(new_drone)
 		new_drone.global_position =  global_position + Vector2(rnd.randf_range(-64,64), rnd.randf_range(-64,64))
+
+func get_free_drone() -> Drone:
+	for it in drones:
+		if it.is_drone_free() == true:
+			return it
+	return null

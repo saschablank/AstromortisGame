@@ -16,7 +16,7 @@ func _init():
 	var rnd: RandomNumberGenerator = RandomNumberGenerator.new()
 	order_update_timer.wait_time = rnd.randf_range(0.2, 0.5)
 	order_update_timer.connect("timeout", _on_update_orders)
-	#parent_building.add_child(order_update_timer)
+	parent_building.add_child(order_update_timer)
 
 
 func start_timer() -> void:
@@ -32,40 +32,24 @@ func get_output_item_count(item: String) -> int:
 
 
 func _on_update_orders() -> void:
-	pass
-	#var to_delete_order = []
-	#for item_order in item_orders:
-		#var closest_building = BuildingQuerys.search_for_closest_building_with_item(parent_building, item_order)
-		#if closest_building != null:
-			#var drone_hubs = BuildingQuerys.sort_buildings_by_distance(
-				#parent_building, BuildingQuerys.get_all_buildings(parent_building.get_parent(), [GameDefinitions.BUILDING_TYPE_DRONE_HUB]))
-			#var counter = 0
-			#var in_drone_hub_range = false
-			#var free_drone = null
-			#for it in drone_hubs:
-				#in_drone_hub_range = true
-				##if counter == 0:
-					##if it.building_object.is_in_dronehub_area(parent_building) == true:
-						##in_drone_hub_range = true
-					##counter += 1
-				#if in_drone_hub_range == true:
-					#free_drone = it.get_incative_drone()
-					#if free_drone != null:
-						#break
-			#if free_drone != null:
-				##order.set_order_data(closest_building, parent_building,item_order,1)
-				##if item_order in RessourceDefinitions.DRONE_TRANSPORT_AMOUNT:
-					##for i in range(RessourceDefinitions.DRONE_TRANSPORT_AMOUNT[item_order]):
-						##closest_building.building_object.storage.move_item_to_pickout(item_order)
-				##else:
-				#closest_building.storage.move_item_to_pickout(item_order)
-				#free_drone.set_order(closest_building, parent_building, item_order, 1)
-				##free_drone.set_active_order(order)
-				##free_drone.parent_hub.add_order_count_for_worker_skills()
-				#to_delete_order.append(item_order)
-				#processed_item_order.append(item_order)
-	#for it in to_delete_order:
-		#item_orders.erase(it)
+	var to_delete_order = []
+	for item_order in item_orders:
+		var closest_building = BuildingQuery.find_closest_building_with_item_in_output(item_order, parent_building)
+		if closest_building != null:
+			var free_drone = BuildingQuery.find_next_free_drone(parent_building)
+			if free_drone != null:
+				if item_order in RessourceDefinitions.DRONE_TRANSPORT_AMOUNT:
+					free_drone.set_order_data(closest_building, parent_building,item_order,
+						RessourceDefinitions.DRONE_TRANSPORT_AMOUNT[item_order])
+					for i in range(RessourceDefinitions.DRONE_TRANSPORT_AMOUNT[item_order]):
+						closest_building.building_object.storage.move_item_to_pickout(item_order)
+				else:
+					free_drone.set_order_data(closest_building, parent_building,item_order,1)
+					closest_building.storage.move_item_to_pickout(item_order)
+				to_delete_order.append(item_order)
+				processed_item_order.append(item_order)
+	for it in to_delete_order:
+		item_orders.erase(it)
 
 
 func get_input_item_count(item: String) -> int:

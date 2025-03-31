@@ -1,5 +1,5 @@
 extends Object
-class_name GameDefinitions
+class_name BuildingDefinitions
 
 
 static var IS_NIGHTTIME = false
