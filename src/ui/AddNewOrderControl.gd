@@ -14,8 +14,8 @@ signal _on_working_order_edit_finish(work_order: WorkingOrder)
 @onready var add_new_order_btn: Button = $addNewOrderBtn
 
 var condition_controls: Array[WorkingOrderConditionControl] = []
-
 var working_order_to_edit: WorkingOrder = null
+
 
 func show_to_edit_working_order(working_order: WorkingOrder):
 	working_order_to_edit = working_order
@@ -23,7 +23,14 @@ func show_to_edit_working_order(working_order: WorkingOrder):
 	visible = true
 	grab_focus()
 
+
 func show_for_new_order():
+	working_order_to_edit = null
+	item.selected = -1
+	for it in order_data_controls.get_children():
+		if it is WorkingOrderConditionControl:
+			it.queue_free()
+	add_condition_btn.disabled = true
 	add_new_order_btn.text = "Create Order"
 	visible = true
 	grab_focus()
@@ -34,7 +41,7 @@ func _on_item_item_selected(index: int) -> void:
 		if it is WorkingOrderConditionControl:
 			it.queue_free()
 	add_condition_btn.disabled = false
-	
+
 
 func collect_condition_data() -> Array[Dictionary]:
 	var conditions: Array[Dictionary] = []
@@ -42,6 +49,7 @@ func collect_condition_data() -> Array[Dictionary]:
 		if it is WorkingOrderConditionControl:
 			conditions.append(it.get_data_from_ui())
 	return conditions
+
 
 func _on_add_new_order_btn_pressed() -> void:
 	var order_data: Dictionary = {
@@ -56,13 +64,16 @@ func _on_add_new_order_btn_pressed() -> void:
 		_on_new_work_order.emit(working_order)
 	else:
 		working_order_to_edit.update_data(order_data)
+		_on_working_order_edit_finish.emit(working_order_to_edit)
 	visible = false
 	release_focus()
+
 
 func delete_condition(control: WorkingOrderConditionControl):
 	if control != null:
 		condition_controls.erase(control)
 		control.queue_free()
+
 
 func _on_add_condition_btn_pressed() -> void:
 	if len(condition_controls) <= 5:

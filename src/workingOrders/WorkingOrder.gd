@@ -19,3 +19,9 @@ func _init(p_order_data) -> void:
 	
 func update_data(p_order_data: Dictionary):
 	order_data = p_order_data
+
+func get_working_order_text():
+	var condition_text = "One-time Order:	"
+	if len(order_data["cond"]):
+		condition_text = "Conditional Order:	"
+	return condition_text +  str(order_data["item_amount"]) + " " + order_data["item"] + " at " + order_data["time"] + " with " + order_data["priority"] + " priority "

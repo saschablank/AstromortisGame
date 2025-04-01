@@ -7,10 +7,8 @@
 [node name="WorkingOrders" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 67.0
-offset_top = 35.0
-offset_right = 516.0
-offset_bottom = 466.0
+offset_right = 876.0
+offset_bottom = 606.0
 script = ExtResource("1_j00gu")
 
 [node name="Panel" type="Panel" parent="."]
@@ -18,9 +16,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -25.0
-offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -45,9 +40,8 @@ window_control_to_close = NodePath("../..")
 layout_mode = 0
 offset_left = 18.0
 offset_top = 132.0
-offset_right = 617.0
+offset_right = 807.0
 offset_bottom = 552.0
-scale = Vector2(0.75, 0.75)
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
@@ -72,3 +66,4 @@ offset_bottom = 618.0
 
 [connection signal="pressed" from="Panel/NewOrderBtn" to="." method="_on_new_order_btn_pressed"]
 [connection signal="_on_new_work_order" from="NewOrderControl" to="." method="_on_new_order_control__on_new_work_order"]
+[connection signal="_on_working_order_edit_finish" from="NewOrderControl" to="." method="_on_new_order_control__on_working_order_edit_finish"]

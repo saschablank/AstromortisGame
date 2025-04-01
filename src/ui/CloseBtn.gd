@@ -6,4 +6,4 @@ class_name CloseBtn
 
 func _on_pressed() -> void:
 	window_control_to_close.visible = false
-	window_control_to_close.focus_exited.emit()
+	window_control_to_close.release_focus()

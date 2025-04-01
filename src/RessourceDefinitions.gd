@@ -151,6 +151,7 @@ static var MANUFACTORING_TIME_MAP: Dictionary = {
 
 static func get_connected_items(item: String, has_to_capitalize: bool = false) -> Array[String]:
 	var connected_items: Array[String] = []
+	connected_items.append(item)
 	if has_to_capitalize == true:
 		item = item.to_lower().replace(" ", "_")
 	if item in ENVIRONMENT_RESSOURCES:
