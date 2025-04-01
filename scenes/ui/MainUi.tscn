@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjdlppdak0qwg"]
+[gd_scene load_steps=4 format=3 uid="uid://cjdlppdak0qwg"]
 
 [ext_resource type="Script" path="res://src/ui/MainUi.gd" id="1_6yf67"]
 [ext_resource type="Script" path="res://src/ui/BuildingBtn.gd" id="2_kmwhb"]
+[ext_resource type="PackedScene" uid="uid://bk2x818hkucbb" path="res://scenes/ui/WorkingOrders.tscn" id="3_evpcf"]
 
 [node name="MainUi" type="Control"]
 layout_mode = 3
@@ -68,6 +69,8 @@ script = ExtResource("2_kmwhb")
 layout_mode = 2
 text = "Storage"
 script = ExtResource("2_kmwhb")
+
+[node name="WorkingOrders" parent="." instance=ExtResource("3_evpcf")]
 
 [connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/solar_panel" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/solar_panel" to="Panel/HBoxContainer/solar_panel" method="_on_pressed"]

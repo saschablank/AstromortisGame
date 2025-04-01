@@ -16,10 +16,10 @@ func _init():
 	var rnd: RandomNumberGenerator = RandomNumberGenerator.new()
 	order_update_timer.wait_time = rnd.randf_range(0.2, 0.5)
 	order_update_timer.connect("timeout", _on_update_orders)
-	parent_building.add_child(order_update_timer)
 
 
 func start_timer() -> void:
+	parent_building.add_child(order_update_timer)
 	order_update_timer.start()
 
 

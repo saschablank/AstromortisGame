@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://brqo28j1ilqdy"]
+
+[ext_resource type="PackedScene" uid="uid://n73mx87nyr4g" path="res://scenes/ui/ItemSelection.tscn" id="1_eqosd"]
+[ext_resource type="Script" path="res://src/ui/AddNewOrderControl.gd" id="1_pmdjk"]
+[ext_resource type="Script" path="res://src/ui/CloseBtn.gd" id="2_3hutd"]
+[ext_resource type="Script" path="res://src/ui/NumerValidator.gd" id="2_vambd"]
+
+[node name="Panel" type="Panel"]
+offset_right = 679.0
+offset_bottom = 570.0
+script = ExtResource("1_pmdjk")
+metadata/_edit_vertical_guides_ = [108.0]
+
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("window_control_to_close")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 6.0
+offset_right = 29.0
+offset_bottom = 37.0
+text = "X"
+script = ExtResource("2_3hutd")
+window_control_to_close = NodePath("..")
+
+[node name="MainRows" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 45.0
+offset_right = 651.0
+offset_bottom = 542.0
+
+[node name="OrderDataControls" type="VBoxContainer" parent="MainRows"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainRows/OrderDataControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainRows/OrderDataControls/HBoxContainer"]
+layout_mode = 2
+text = "Produce:   "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="item_amount" type="LineEdit" parent="MainRows/OrderDataControls/HBoxContainer"]
+layout_mode = 2
+text = "1"
+placeholder_text = "1"
+script = ExtResource("2_vambd")
+
+[node name="item" parent="MainRows/OrderDataControls/HBoxContainer" instance=ExtResource("1_eqosd")]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = -1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MainRows/OrderDataControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainRows/OrderDataControls/HBoxContainer4"]
+layout_mode = 2
+text = "during the"
+
+[node name="time" type="OptionButton" parent="MainRows/OrderDataControls/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 3
+popup/item_0/text = "Day"
+popup/item_1/text = "Night"
+popup/item_1/id = 1
+popup/item_2/text = "Day and Night"
+popup/item_2/id = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MainRows/OrderDataControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainRows/OrderDataControls/HBoxContainer5"]
+layout_mode = 2
+text = "with:          "
+
+[node name="Priority" type="OptionButton" parent="MainRows/OrderDataControls/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 1
+item_count = 3
+popup/item_0/text = "High"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Low"
+popup/item_2/id = 2
+
+[node name="Label2" type="Label" parent="MainRows/OrderDataControls/HBoxContainer5"]
+layout_mode = 2
+text = "Priority"
+
+[node name="AddConditionBtn" type="Button" parent="MainRows"]
+layout_mode = 2
+disabled = true
+text = "Add Condition"
+
+[node name="addNewOrderBtn" type="Button" parent="."]
+layout_mode = 2
+offset_left = 31.0
+offset_top = 505.0
+offset_right = 651.0
+offset_bottom = 536.0
+text = "Create Order"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="text_submitted" from="MainRows/OrderDataControls/HBoxContainer/item_amount" to="MainRows/OrderDataControls/HBoxContainer/item_amount" method="_on_text_submitted"]
+[connection signal="item_selected" from="MainRows/OrderDataControls/HBoxContainer/item" to="." method="_on_item_item_selected"]
+[connection signal="pressed" from="MainRows/AddConditionBtn" to="." method="_on_add_condition_btn_pressed"]
+[connection signal="pressed" from="addNewOrderBtn" to="." method="_on_add_new_order_btn_pressed"]

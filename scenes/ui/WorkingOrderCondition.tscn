@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy2en76tvf4lj"]
+
+[ext_resource type="PackedScene" uid="uid://n73mx87nyr4g" path="res://scenes/ui/ItemSelection.tscn" id="1_2m03k"]
+[ext_resource type="Script" path="res://src/ui/WorkingOrderConditionControl.gd" id="1_i2xms"]
+[ext_resource type="PackedScene" uid="uid://h2lbiexpu3ph" path="res://scenes/ui/ConditionOptionBtn.tscn" id="2_dgcck"]
+[ext_resource type="Script" path="res://src/ui/NumerValidator.gd" id="3_s7d38"]
+
+[node name="WorkingOrderCondition" type="HBoxContainer"]
+script = ExtResource("1_i2xms")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "when         "
+
+[node name="connected_items" parent="." instance=ExtResource("1_2m03k")]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = -1
+shoud_preload = false
+
+[node name="Condition" parent="." instance=ExtResource("2_dgcck")]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = -1
+
+[node name="amountOfItems" type="LineEdit" parent="."]
+layout_mode = 2
+text = "10"
+script = ExtResource("3_s7d38")
+default_value = 10
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "in Storage"
+
+[node name="deleteBtn" type="Button" parent="."]
+layout_mode = 2
+text = "X"
+
+[connection signal="text_submitted" from="amountOfItems" to="amountOfItems" method="_on_text_submitted"]
+[connection signal="pressed" from="deleteBtn" to="." method="_on_delete_btn_pressed"]

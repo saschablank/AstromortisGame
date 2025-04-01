@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://h2lbiexpu3ph"]
+
+[ext_resource type="Script" path="res://src/ui/ConditionOptionBtn.gd" id="1_77xvh"]
+
+[node name="OptionButton2" type="OptionButton"]
+offset_right = 32.0
+offset_bottom = 20.0
+selected = 0
+item_count = 4
+popup/item_0/text = "Has Less Then"
+popup/item_1/text = "Has More Then"
+popup/item_1/id = 1
+popup/item_2/text = "Has Exact Amount"
+popup/item_2/id = 2
+popup/item_3/text = "Always"
+popup/item_3/id = 3
+script = ExtResource("1_77xvh")

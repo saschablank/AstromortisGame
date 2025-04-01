@@ -8,6 +8,7 @@ var active_state = null
 var building_name: String = ""
 var energy_consumption: float = 0
 var local_storage: LocalStorage = LocalStorage.new()
+#var working_orders: Workorders = []
 
 func _ready() -> void:
 	for it in get_children():

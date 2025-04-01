@@ -1,3 +1,4 @@
+@tool
 extends Object
 
 class_name RessourceDefinitions
@@ -27,7 +28,7 @@ static var HYDROGEN = "hydrogen"
 static var OXYGEN = "oxygen"
 static var DRINKING_WATER = "drinking_water"
 
-static var ALL_RESSOURCES = [ # THIS LIST ALSO DEFINES THE ORDER IN THE STORAGE UI
+static var ALL_RESSOURCES: Array[String] = [ # THIS LIST ALSO DEFINES THE ORDER IN THE STORAGE UI
 	BIOMASS,
 	MEALS,
 	SILICIUM,
@@ -49,6 +50,16 @@ static var ALL_RESSOURCES = [ # THIS LIST ALSO DEFINES THE ORDER IN THE STORAGE 
 	DRINKING_WATER
 ]
 
+static var BUILDING_TO_ITEM_MAP = {
+	BuildingDefinitions.BUILDING_TYPE_HYDROGEN_FACTORY: [ DRINKING_WATER ],
+	BuildingDefinitions.BUILDING_TYPE_FARM: [BIOMASS],
+	BuildingDefinitions.BUILDING_TYPE_SAND_MINE: [SILICIUM],
+	BuildingDefinitions.BUILDING_TYPE_ORE_MINE: [IRON_ORE, COPPER_ORE, GOLD_ORE, TRITANIUM_ORE],
+	BuildingDefinitions.BUILDING_TYPE_FACTORY: [MEALS, IRON_PLATES, COPPER_PLATES, ELETRONIC_COMPONENTS, DRONE_FRAME, BUILDING_BLOCKS],
+	BuildingDefinitions.BUILDING_TYPE_FORGE: 	[IRON, COPPER, GLASS, STEEL, GOLD, TRITANIUM],
+	BuildingDefinitions.BUILDING_TYPE_CHEMICAL_PLANT: [SILICIUMCARBID, CARBON, HYDROGEN],	
+}
+
 static var DRONE_TRANSPORT_AMOUNT = {
 	OXYGEN : 20,
 	DRINKING_WATER: 10
@@ -61,46 +72,6 @@ static var ENVIRONMENT_RESSOURCES: = [
 	TRITANIUM_ORE,
 	SILICIUM,
 	DRINKING_WATER,
-]
-
-static var PRODUCTS_IN_HYDROGEN_FARM = [
-	DRINKING_WATER,
-	OXYGEN
-]
-
-static var PRODUCTS_IN_FARM = [
-	BIOMASS
-]
-
-static var PRODUCTS_IN_MINE = [
-	IRON_ORE,
-	COPPER_ORE,
-	GOLD_ORE,
-	TRITANIUM_ORE
-]
-
-static var PRODUCTS_IN_FORGE: = [
-	IRON,
-	COPPER,
-	GLASS,
-	STEEL,
-	GOLD,
-	TRITANIUM
-]
-
-static var PRODUCTS_IN_CHEMICAL_PLANT = [
-	SILICIUMCARBID,
-	CARBON,
-	HYDROGEN
-]
-
-static var PRODUCTS_IN_FACTORY = [
-	MEALS,
-	IRON_PLATES,
-	COPPER_PLATES,
-	ELETRONIC_COMPONENTS,
-	DRONE_FRAME,
-	BUILDING_BLOCKS
 ]
 
 
@@ -117,39 +88,6 @@ static var ORE_TO_TYPE_MAP = {
 	OreTypes.E_GOLD: GOLD,
 	OreTypes.E_TRITANIUM: TRITANIUM
 }
-
-static var ICON_MAP: Dictionary = {
-	HYDROGEN: Rect2(64,32,32,32),
-	OXYGEN: Rect2(96,32,32,32),
-	IRON_PLATES: Rect2(224, 0, 32, 32),
-	COPPER_PLATES: Rect2(256, 0, 32, 32),
-	BUILDING_BLOCKS: Rect2(192, 0, 32, 32),
-	ELETRONIC_COMPONENTS: Rect2(128, 0, 32, 32),
-	GLASS: Rect2(96, 0, 32, 32),
-	TRITANIUM : Rect2(0, 32, 32, 32),
-	MEALS: Rect2(160, 0, 32, 32),
-	IRON: Rect2(32,0, 32, 32),
-	COPPER: Rect2(32, 32, 32, 32),
-	SILICIUM: Rect2(288, 0, 32, 32),
-	BIOMASS: Rect2(320, 0, 32, 32),
-	IRON_ORE: Rect2(0, 96, 32, 32),
-	COPPER_ORE: Rect2(32, 96, 32, 32),
-	GOLD_ORE: Rect2(64, 96, 32, 32),
-	TRITANIUM_ORE: Rect2(96, 96, 32, 32),
-	GOLD: Rect2(64, 0, 32, 32),
-	SILICIUMCARBID: Rect2(256,32, 32, 32),
-	CARBON: Rect2(160, 32, 32 ,32),
-	STEEL: Rect2(128,32,32,32),
-	DRONE_FRAME: Rect2(128,64,32,32),
-	DRONE: Rect2(160,64,32,32),
-	DRINKING_WATER: Rect2(288,32,32,32),
-	"build": Rect2(416,0, 32, 32),
-	"deny": Rect2(96,64,32,32),
-	"colonist": Rect2(480,0,32,32),
-	"energy_storage_drain": Rect2(0,128,32,32),
-	"energy_storage_reload": Rect2(32,128,32,32),
-	"oxygen_tank": Rect2(96,32,32,32)
-	}
 
 static var RECIPIES_MAP: Dictionary = {
 	IRON_PLATES: { IRON: 1 },
@@ -211,8 +149,58 @@ static var MANUFACTORING_TIME_MAP: Dictionary = {
 }
 
 
+static func get_connected_items(item: String, has_to_capitalize: bool = false) -> Array[String]:
+	var connected_items: Array[String] = []
+	if has_to_capitalize == true:
+		item = item.to_lower().replace(" ", "_")
+	if item in ENVIRONMENT_RESSOURCES:
+		for it in RECIPIES_MAP:
+			if item in RECIPIES_MAP[it].keys():
+				connected_items.append(it)
+	else:
+		for it in RECIPIES_MAP:
+			if item in RECIPIES_MAP[it].keys():
+				connected_items.append(it)
+		for it in RECIPIES_MAP[item]:
+			connected_items.append(it)
+	return connected_items
+
+
 static var icon_images: Dictionary = {}
 static var icon_slot_images: Dictionary = {}
+
+static var ICON_MAP: Dictionary = {
+	HYDROGEN: Rect2(64,32,32,32),
+	OXYGEN: Rect2(96,32,32,32),
+	IRON_PLATES: Rect2(224, 0, 32, 32),
+	COPPER_PLATES: Rect2(256, 0, 32, 32),
+	BUILDING_BLOCKS: Rect2(192, 0, 32, 32),
+	ELETRONIC_COMPONENTS: Rect2(128, 0, 32, 32),
+	GLASS: Rect2(96, 0, 32, 32),
+	TRITANIUM : Rect2(0, 32, 32, 32),
+	MEALS: Rect2(160, 0, 32, 32),
+	IRON: Rect2(32,0, 32, 32),
+	COPPER: Rect2(32, 32, 32, 32),
+	SILICIUM: Rect2(288, 0, 32, 32),
+	BIOMASS: Rect2(320, 0, 32, 32),
+	IRON_ORE: Rect2(0, 96, 32, 32),
+	COPPER_ORE: Rect2(32, 96, 32, 32),
+	GOLD_ORE: Rect2(64, 96, 32, 32),
+	TRITANIUM_ORE: Rect2(96, 96, 32, 32),
+	GOLD: Rect2(64, 0, 32, 32),
+	SILICIUMCARBID: Rect2(256,32, 32, 32),
+	CARBON: Rect2(160, 32, 32 ,32),
+	STEEL: Rect2(128,32,32,32),
+	DRONE_FRAME: Rect2(128,64,32,32),
+	DRONE: Rect2(160,64,32,32),
+	DRINKING_WATER: Rect2(288,32,32,32),
+	"build": Rect2(416,0, 32, 32),
+	"deny": Rect2(96,64,32,32),
+	"colonist": Rect2(480,0,32,32),
+	"energy_storage_drain": Rect2(0,128,32,32),
+	"energy_storage_reload": Rect2(32,128,32,32),
+	"oxygen_tank": Rect2(96,32,32,32)
+	}
 
 
 static func blit_icon_texture(rect: Rect2, resize_size: Vector2i = Vector2(-1,-1)):

@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk2x818hkucbb"]
+
+[ext_resource type="Script" path="res://src/ui/WorkingOrderControl.gd" id="1_j00gu"]
+[ext_resource type="PackedScene" uid="uid://cxcjl0mdguho4" path="res://scenes/ui/CloseBtn.tscn" id="2_kfsom"]
+[ext_resource type="PackedScene" uid="uid://brqo28j1ilqdy" path="res://scenes/ui/AddNewOrder.tscn" id="3_d7ehj"]
+
+[node name="WorkingOrders" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 67.0
+offset_top = 35.0
+offset_right = 516.0
+offset_bottom = 466.0
+script = ExtResource("1_j00gu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -25.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 63.0
+offset_top = 17.0
+offset_right = 254.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+text = "Working Orders"
+
+[node name="Button" parent="Panel" node_paths=PackedStringArray("window_control_to_close") instance=ExtResource("2_kfsom")]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 36.0
+offset_bottom = 48.0
+window_control_to_close = NodePath("../..")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 132.0
+offset_right = 617.0
+offset_bottom = 552.0
+scale = Vector2(0.75, 0.75)
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="NewOrderBtn" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 89.0
+offset_right = 111.0
+offset_bottom = 120.0
+text = "New Order"
+
+[node name="NewOrderControl" parent="." instance=ExtResource("3_d7ehj")]
+visible = false
+layout_mode = 0
+offset_left = 324.0
+offset_top = 64.0
+offset_right = 1021.0
+offset_bottom = 618.0
+
+[connection signal="pressed" from="Panel/NewOrderBtn" to="." method="_on_new_order_btn_pressed"]
+[connection signal="_on_new_work_order" from="NewOrderControl" to="." method="_on_new_order_control__on_new_work_order"]
