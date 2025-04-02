@@ -1,5 +1,5 @@
 extends Panel
-
+class_name NewWorkingOrderControl
 const WORKING_ORDER_CONDITION = preload("res://scenes/ui/WorkingOrderCondition.tscn")
 
 signal _on_new_work_order(work_order: WorkingOrder)

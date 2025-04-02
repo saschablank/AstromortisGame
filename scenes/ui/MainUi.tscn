@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjdlppdak0qwg"]
+[gd_scene load_steps=8 format=3 uid="uid://cjdlppdak0qwg"]
 
 [ext_resource type="Script" path="res://src/ui/MainUi.gd" id="1_6yf67"]
 [ext_resource type="Script" path="res://src/ui/BuildingBtn.gd" id="2_kmwhb"]
 [ext_resource type="PackedScene" uid="uid://bk2x818hkucbb" path="res://scenes/ui/WorkingOrders.tscn" id="3_evpcf"]
+[ext_resource type="Texture2D" uid="uid://bnsf4hk45xrjl" path="res://assets/Ui/icons/working_order_icon.png" id="4_hlaoq"]
+[ext_resource type="Script" path="res://src/ui/GameControlsPanel.gd" id="4_j0mjq"]
+[ext_resource type="Texture2D" uid="uid://dcqf7v18kankx" path="res://assets/Ui/icons/info_icons.png" id="4_o4v4l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w02m2"]
+atlas = ExtResource("4_o4v4l")
+region = Rect2(64, 64, 64, 64)
 
 [node name="MainUi" type="Control"]
 layout_mode = 3
@@ -13,76 +20,123 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6yf67")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="BuildMenu" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -54.0
-offset_right = -1.0
+offset_left = 96.0
+offset_top = -58.0
+offset_right = -17.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildMenu"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 5
 
-[node name="solar_panel" type="Button" parent="Panel/HBoxContainer"]
+[node name="solar_panel" type="Button" parent="BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Solar
 Panel
 "
 script = ExtResource("2_kmwhb")
 
-[node name="energy_storage" type="Button" parent="Panel/HBoxContainer"]
+[node name="energy_storage" type="Button" parent="BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Energy 
 Storage"
 script = ExtResource("2_kmwhb")
 
-[node name="waterfactory" type="Button" parent="Panel/HBoxContainer"]
+[node name="waterfactory" type="Button" parent="BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Water
 Factory"
 script = ExtResource("2_kmwhb")
 
-[node name="farm" type="Button" parent="Panel/HBoxContainer"]
+[node name="farm" type="Button" parent="BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Farm"
 script = ExtResource("2_kmwhb")
 
-[node name="factory" type="Button" parent="Panel/HBoxContainer"]
+[node name="factory" type="Button" parent="BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Factory"
 script = ExtResource("2_kmwhb")
 
-[node name="dronehub" type="Button" parent="Panel/HBoxContainer"]
+[node name="dronehub" type="Button" parent="BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Dronehub
 "
 script = ExtResource("2_kmwhb")
 
-[node name="storage" type="Button" parent="Panel/HBoxContainer"]
+[node name="storage" type="Button" parent="BuildMenu/HBoxContainer"]
 layout_mode = 2
 text = "Storage"
 script = ExtResource("2_kmwhb")
 
 [node name="WorkingOrders" parent="." instance=ExtResource("3_evpcf")]
+visible = false
+offset_left = 98.0
+offset_top = 16.0
+offset_right = 926.0
+offset_bottom = 583.0
 
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/solar_panel" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/solar_panel" to="Panel/HBoxContainer/solar_panel" method="_on_pressed"]
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/energy_storage" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/energy_storage" to="Panel/HBoxContainer/energy_storage" method="_on_pressed"]
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/waterfactory" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/waterfactory" to="Panel/HBoxContainer/waterfactory" method="_on_pressed"]
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/farm" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/farm" to="Panel/HBoxContainer/farm" method="_on_pressed"]
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/factory" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/factory" to="Panel/HBoxContainer/factory" method="_on_pressed"]
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/dronehub" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/dronehub" to="Panel/HBoxContainer/dronehub" method="_on_pressed"]
-[connection signal="_on_building_btn_pressed" from="Panel/HBoxContainer/storage" to="." method="_on_building_btn_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/storage" to="Panel/HBoxContainer/storage" method="_on_pressed"]
+[node name="GameControls" type="Panel" parent="." node_paths=PackedStringArray("build_menu", "working_orders_window")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+offset_right = 90.0
+grow_vertical = 0
+script = ExtResource("4_j0mjq")
+build_menu = NodePath("../BuildMenu")
+working_orders_window = NodePath("../WorkingOrders")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameControls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="openWorkingOrderBtn" type="Button" parent="GameControls/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Working Orders"
+icon = ExtResource("4_hlaoq")
+
+[node name="openBuildingMenu" type="Button" parent="GameControls/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Build"
+icon = SubResource("AtlasTexture_w02m2")
+icon_alignment = 1
+
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/solar_panel" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/solar_panel" to="BuildMenu/HBoxContainer/solar_panel" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/energy_storage" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/energy_storage" to="BuildMenu/HBoxContainer/energy_storage" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/waterfactory" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/waterfactory" to="BuildMenu/HBoxContainer/waterfactory" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/farm" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/farm" to="BuildMenu/HBoxContainer/farm" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/factory" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/factory" to="BuildMenu/HBoxContainer/factory" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/dronehub" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/dronehub" to="BuildMenu/HBoxContainer/dronehub" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/storage" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/storage" to="BuildMenu/HBoxContainer/storage" method="_on_pressed"]
+[connection signal="pressed" from="GameControls/VBoxContainer/openWorkingOrderBtn" to="GameControls" method="_on_open_working_order_btn_pressed"]
+[connection signal="pressed" from="GameControls/VBoxContainer/openBuildingMenu" to="GameControls" method="_on_open_building_menu_pressed"]

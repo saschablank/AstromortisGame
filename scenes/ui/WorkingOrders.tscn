@@ -7,8 +7,8 @@
 [node name="WorkingOrders" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 876.0
-offset_bottom = 606.0
+offset_right = 828.0
+offset_bottom = 569.0
 script = ExtResource("1_j00gu")
 
 [node name="Panel" type="Panel" parent="."]
@@ -64,6 +64,11 @@ offset_top = 64.0
 offset_right = 1021.0
 offset_bottom = 618.0
 
+[node name="process_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="pressed" from="Panel/NewOrderBtn" to="." method="_on_new_order_btn_pressed"]
 [connection signal="_on_new_work_order" from="NewOrderControl" to="." method="_on_new_order_control__on_new_work_order"]
 [connection signal="_on_working_order_edit_finish" from="NewOrderControl" to="." method="_on_new_order_control__on_working_order_edit_finish"]
+[connection signal="timeout" from="process_timer" to="." method="_on_process_timer_timeout"]

@@ -7,12 +7,12 @@ class_name WorkingOrder
 static var WORKING_ORDER_CONDITIONS: Array[String] = [
 	"has_less_then",
 	"has_more_then",
-	"has_exact amount",
-	"always"
+	"has_exact amount"
 ]
 
 var building_to_use: BuildingBase
 var order_data: Dictionary = {}
+var to_produce = 0
 
 func _init(p_order_data) -> void:
 	update_data(p_order_data)

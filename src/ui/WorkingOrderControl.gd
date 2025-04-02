@@ -4,15 +4,7 @@ class_name WorkingOrderControl
 const WORK_ORDER_ENTRY = preload("res://scenes/ui/WorkOrderEntry.tscn")
 
 var working_orders: Array[WorkingOrder] = []
-
-
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-
-func _process(delta: float) -> void:
-	pass
+var working_processor:WorkingOrderProcessor = WorkingOrderProcessor.new()
 
 
 func update_data():
@@ -53,3 +45,7 @@ func _on_new_order_control__on_new_work_order(work_order: WorkingOrder) -> void:
 
 func _on_new_order_control__on_working_order_edit_finish(work_order: WorkingOrder) -> void:
 	update_data()
+
+
+func _on_process_timer_timeout() -> void:
+	working_processor.process_working_orders(working_orders)

@@ -3,12 +3,15 @@ class_name BuildingBase
 
 const LocalStorage = preload("res://src/buildings/LocalStorage.gd")
 
+
 var states: Dictionary= {}
 var active_state = null 
 var building_name: String = ""
 var energy_consumption: float = 0
 var local_storage: LocalStorage = LocalStorage.new()
-#var working_orders: Workorders = []
+var working_orders: Array[WorkingOrder] = []
+var active_working_order: WorkingOrder = null
+
 
 func _ready() -> void:
 	for it in get_children():
@@ -18,7 +21,6 @@ func _ready() -> void:
 	_on_state_change("placing")
 	$Area2D/AnimatedSprite2D.play("default")
 	local_storage.parent_building = self
-	
 
 
 func _process(delta: float) -> void:
@@ -40,3 +42,21 @@ func _on_state_change(new_state: String):
 
 func get_active_state() -> StateBase:
 	return active_state
+
+
+func get_working_order_count():
+	return len(working_orders)
+	
+func add_working_order(working_order: WorkingOrder):
+	print("add order to buulding")
+	working_order.building_to_use = self
+	working_orders.append(working_order)
+	working_order.to_produce = working_order.order_data["item"]
+	if active_working_order == null:
+		active_working_order = working_order
+
+func remove_working_order(working_order: WorkingOrder):
+	if active_working_order == working_order:
+		active_working_order = null
+	working_orders.erase(working_order)
+		

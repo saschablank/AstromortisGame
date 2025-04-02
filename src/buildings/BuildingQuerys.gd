@@ -4,6 +4,22 @@ class_name BuildingQuery
 static var BUILDING_ROOT_NODE: Node2D = null
 
 
+static func get_all_of_type(building_type: String) -> Array[BuildingBase]:
+	var r_buildings: Array[BuildingBase] = []
+	for it in BUILDING_ROOT_NODE.get_children():
+		if it is BuildingBase:
+			if it.building_name == building_type:
+				r_buildings.append(it)
+	return r_buildings
+
+
+static func get_total_output_item_amount(item) -> int:
+	var item_count: int = 0
+	for it in BUILDING_ROOT_NODE.get_children():
+		if it is BuildingBase:
+			item_count += it.local_storage.get_output_item_count(item)
+	return item_count
+
 static func find_closest_building_with_item_in_output(item: String, src_building: BuildingBase ) -> BuildingBase:
 	var buildings_with_item: Array[BuildingBase] = get_buildings_with_item(item)
 	var closest: BuildingBase = null
@@ -15,7 +31,8 @@ static func find_closest_building_with_item_in_output(item: String, src_building
 				closest = it
 				current_distance = dist
 	return closest
-	
+
+
 static func get_buildings_with_item(item: String) ->  Array[BuildingBase]:
 	var buildings_with_item: Array[BuildingBase] = []
 	for it in BUILDING_ROOT_NODE.get_children():
@@ -23,7 +40,8 @@ static func get_buildings_with_item(item: String) ->  Array[BuildingBase]:
 			if it.local_storage.get_output_item_count(item) > 0:
 				buildings_with_item.append(it)
 	return buildings_with_item
-	
+
+
 static func order_buildings_by_distance(src_building: BuildingBase, to_sort: Array[BuildingBase]):
 	var dist_map = []
 	for it in to_sort:
@@ -34,8 +52,7 @@ static func order_buildings_by_distance(src_building: BuildingBase, to_sort: Arr
 	for it in dist_map:
 		buildings.append(it.keys().building)
 	return buildings
-	
-	
+
 
 static func find_next_free_drone(src_building: BuildingBase) -> Drone:
 	var drone_hubs: Array[BuildingBase] = []
