@@ -29,7 +29,10 @@ func _process(delta: float) -> void:
 func _on_state_change(new_state: String):
 	if active_state.name == "load_level":	
 		self.main_camera.position = self.main_camera.level_rect.position + (self.main_camera.level_rect.size / 2)	
+	if active_state != null:
+		active_state.state_leave()
 	active_state = states[new_state]
+	active_state.state_init()
 
 
 func _on_main_ui__on_building_pressed(building_name: String) -> void:
@@ -40,3 +43,7 @@ func _on_main_ui__on_building_pressed(building_name: String) -> void:
 func _input(event: InputEvent) -> void:
 	if active_state != null:
 		active_state.process_input(event)
+
+
+func _on_main_ui__on_build_corridor() -> void:
+	_on_state_change("street_building")

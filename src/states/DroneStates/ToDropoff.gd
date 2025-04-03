@@ -1,11 +1,15 @@
 extends "res://src/states/StateBase.gd"
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	movement_speed = get_parent().drone_speed
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func process_state(delta: float):
+	var dropoff_location = get_parent().current_order["dropoff"]
+	if dropoff_location != null:
+		move_to_target(delta, dropoff_location.global_position)
+
+
+func target_reached():
+	_on_state_change.emit("dropoff")

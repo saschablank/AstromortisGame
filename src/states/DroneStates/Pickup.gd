@@ -1,11 +1,12 @@
 extends "res://src/states/StateBase.gd"
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func state_init():
+	var order = get_parent().current_order
+	var pickup_dest: BuildingBase = order["pickup"]
+	for i in range(1,order["amount"]):
+		pickup_dest.local_storage.remove_from_pickup(order["item"])
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func process_state(delta: float):
+	_on_state_change.emit("todropoff")

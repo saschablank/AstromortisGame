@@ -6,10 +6,11 @@ static var BUILDING_ROOT_NODE: Node2D = null
 
 static func get_all_of_type(building_type: String) -> Array[BuildingBase]:
 	var r_buildings: Array[BuildingBase] = []
-	for it in BUILDING_ROOT_NODE.get_children():
-		if it is BuildingBase:
-			if it.building_name == building_type:
-				r_buildings.append(it)
+	if BUILDING_ROOT_NODE != null:
+		for it in BUILDING_ROOT_NODE.get_children():
+			if it is BuildingBase:
+				if it.building_name == building_type:
+					r_buildings.append(it)
 	return r_buildings
 
 
@@ -19,6 +20,7 @@ static func get_total_output_item_amount(item) -> int:
 		if it is BuildingBase:
 			item_count += it.local_storage.get_output_item_count(item)
 	return item_count
+
 
 static func find_closest_building_with_item_in_output(item: String, src_building: BuildingBase ) -> BuildingBase:
 	var buildings_with_item: Array[BuildingBase] = get_buildings_with_item(item)
@@ -50,7 +52,7 @@ static func order_buildings_by_distance(src_building: BuildingBase, to_sort: Arr
 	dist_map.sort_custom(func(a:Dictionary, b: Dictionary) -> int: return a.distance < b.distance)
 	var buildings: Array[BuildingBase] = []
 	for it in dist_map:
-		buildings.append(it.keys().building)
+		buildings.append(it["building"])
 	return buildings
 
 
@@ -70,5 +72,3 @@ static func find_next_free_drone(src_building: BuildingBase) -> Drone:
 		if r_free_drone != null:
 			return r_free_drone
 	return null
-	
-			

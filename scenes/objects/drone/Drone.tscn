@@ -10,6 +10,8 @@
 [ext_resource type="SpriteFrames" uid="uid://b3ap7do28du8p" path="res://scenes/objects/drone/DronesFrames.tres" id="8_q84t0"]
 
 [node name="Drone" type="Node2D"]
+z_index = 50
+y_sort_enabled = true
 script = ExtResource("1_h1e7o")
 
 [node name="idle" type="Node" parent="."]

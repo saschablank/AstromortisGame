@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmooracqst147"]
+[gd_scene load_steps=9 format=3 uid="uid://dmooracqst147"]
 
 [ext_resource type="Script" path="res://src/states/LevelContainerStates/StateLoadLevel.gd" id="1_0my81"]
 [ext_resource type="Script" path="res://src/LevelContainer.gd" id="1_hju31"]
 [ext_resource type="Script" path="res://src/RtsCamera.gd" id="3_4fs0e"]
 [ext_resource type="Script" path="res://src/states/LevelContainerStates/StateLevelDefault.gd" id="3_r6lic"]
 [ext_resource type="Script" path="res://src/states/LevelContainerStates/StatePlaceBuilding.gd" id="4_pv1ck"]
+[ext_resource type="Script" path="res://src/states/LevelContainerStates/StateStreetBuild.gd" id="5_rdui3"]
 [ext_resource type="PackedScene" uid="uid://cjdlppdak0qwg" path="res://scenes/ui/MainUi.tscn" id="6_8i3py"]
 [ext_resource type="Script" path="res://scenes/EnergySystem.gd" id="7_g6cvd"]
 
@@ -22,6 +23,9 @@ state_owner = NodePath("..")
 [node name="place_building" type="Node" parent="." node_paths=PackedStringArray("state_owner")]
 script = ExtResource("4_pv1ck")
 state_owner = NodePath("..")
+
+[node name="street_building" type="Node" parent="."]
+script = ExtResource("5_rdui3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
@@ -43,4 +47,6 @@ script = ExtResource("7_g6cvd")
 [connection signal="_on_state_change" from="load_level" to="." method="_on_state_change"]
 [connection signal="_on_state_change" from="default" to="." method="_on_state_change"]
 [connection signal="_on_state_change" from="place_building" to="." method="_on_state_change"]
+[connection signal="_on_state_change" from="street_building" to="." method="_on_state_change"]
+[connection signal="_on_build_corridor" from="Camera2D/CanvasLayer/MainUi" to="." method="_on_main_ui__on_build_corridor"]
 [connection signal="_on_building_pressed" from="Camera2D/CanvasLayer/MainUi" to="." method="_on_main_ui__on_building_pressed"]

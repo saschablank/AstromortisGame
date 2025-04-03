@@ -1,11 +1,13 @@
 extends "res://src/states/StateBase.gd"
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	movement_speed = get_parent().drone_speed
+
+func process_state(delta: float):
+	if get_parent().parent_hub != null:
+		move_to_target(delta, get_parent().parent_hub.global_position)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func target_reached():
+	_on_state_change.emit("idle")

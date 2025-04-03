@@ -21,9 +21,9 @@ func storage_tick():
 				)
 			if building_with_item != null:
 				if item == RessourceDefinitions.OXYGEN or item == RessourceDefinitions.DRINKING_WATER:
-					building_with_item.local_storage.add_item_order(item, 100)
+					get_parent().local_storage.add_item_order(item, 100)
 				else:
-					building_with_item.local_storage.add_item_order(item, 1)
+					get_parent().local_storage.add_item_order(item, 1)
 
 func process_state(delta: float) -> void:
 	if timer.is_stopped() == true:

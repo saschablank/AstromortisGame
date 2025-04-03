@@ -17,6 +17,8 @@ func create_drones(amount:int = 1):
 		get_parent().get_parent().add_child(new_drone)
 		drones.append(new_drone)
 		new_drone.global_position =  global_position + Vector2(rnd.randf_range(-64,64), rnd.randf_range(-64,64))
+		new_drone.parent_hub = self
+
 
 func get_free_drone() -> Drone:
 	for it in drones:

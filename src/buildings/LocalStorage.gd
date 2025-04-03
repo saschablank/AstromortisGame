@@ -39,10 +39,10 @@ func _on_update_orders() -> void:
 			var free_drone = BuildingQuery.find_next_free_drone(parent_building)
 			if free_drone != null:
 				if item_order in RessourceDefinitions.DRONE_TRANSPORT_AMOUNT:
-					free_drone.set_order_data(closest_building, parent_building,item_order,
+					free_drone.set_item_order(closest_building, parent_building,item_order,
 						RessourceDefinitions.DRONE_TRANSPORT_AMOUNT[item_order])
 					for i in range(RessourceDefinitions.DRONE_TRANSPORT_AMOUNT[item_order]):
-						closest_building.building_object.storage.move_item_to_pickout(item_order)
+						closest_building.local_storage.move_item_to_pickout(item_order)
 				else:
 					free_drone.set_order_data(closest_building, parent_building,item_order,1)
 					closest_building.storage.move_item_to_pickout(item_order)

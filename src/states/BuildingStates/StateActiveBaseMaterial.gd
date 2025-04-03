@@ -14,16 +14,18 @@ func state_init():
 
 
 func production_tick():
+	print("production_tick")
 	var storage: LocalStorage = get_parent().local_storage
-	var water_amount = RessourceDefinitions.RECIPIE_OUTPUT_AMOUNT[active_recipie]
-	storage.add_output_item(active_recipie, water_amount)
-	get_parent().active_working_order.to_produce -= water_amount
+	var item_amount = RessourceDefinitions.RECIPIE_OUTPUT_AMOUNT[active_recipie]
+	storage.add_output_item(active_recipie, item_amount)
+	get_parent().active_working_order.to_produce -= item_amount
 	if get_parent().active_working_order.to_produce <= 0:
 		get_parent().remove_working_order(get_parent().active_working_order)
+		print("order fullfilled")
 
 
 func process_state(delta: float):
-	if get_parent().active_working_order != null and prod_timer.is_stopped() == true:
+	if get_parent().active_working_order != null:
 		if prod_timer.is_stopped() == true:
 			prod_timer.start()
 	else:

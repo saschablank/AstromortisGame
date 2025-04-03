@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://ce2a552i4aayx"]
+
+[ext_resource type="Script" path="res://src/buildings/LivingQuarter.gd" id="1_o81eq"]
+[ext_resource type="SpriteFrames" uid="uid://wnqfdacukts3" path="res://scenes/buildings/LivingQuarter/LivingQuarterFrames.tres" id="2_p21xf"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StatePlacing.gd" id="3_wfug0"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateBuild.gd" id="4_s8v5o"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/LivingQuarterStateActive.gd" id="5_hhfgi"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateInactive.gd" id="6_lektc"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateNoPower.gd" id="7_3h07q"]
+[ext_resource type="Script" path="res://src/states/BuildingStates/StateDeconstruct.gd" id="8_rcjr3"]
+[ext_resource type="PackedScene" uid="uid://dcx5jepursgqr" path="res://scenes/buildings/BuildingEffekts/InfoIcons.tscn" id="9_hrqrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4jcn"]
+size = Vector2(262, 130)
+
+[node name="LivingQuarter" type="Node2D"]
+script = ExtResource("1_o81eq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("2_p21xf")
+speed_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 40)
+shape = SubResource("RectangleShape2D_q4jcn")
+
+[node name="placing" type="Node" parent="."]
+script = ExtResource("3_wfug0")
+
+[node name="build" type="Node" parent="."]
+script = ExtResource("4_s8v5o")
+
+[node name="active" type="Node" parent="."]
+script = ExtResource("5_hhfgi")
+
+[node name="inactive" type="Node" parent="."]
+script = ExtResource("6_lektc")
+
+[node name="nopower" type="Node" parent="."]
+script = ExtResource("7_3h07q")
+
+[node name="deconstruct" type="Node" parent="."]
+script = ExtResource("8_rcjr3")
+
+[node name="InfoIcons" parent="." instance=ExtResource("9_hrqrp")]
+
+[connection signal="area_entered" from="Area2D" to="placing" method="area_entered"]
+[connection signal="area_exited" from="Area2D" to="placing" method="area_exited"]
+[connection signal="body_entered" from="Area2D" to="placing" method="body_entered"]
+[connection signal="body_exited" from="Area2D" to="placing" method="body_exited"]

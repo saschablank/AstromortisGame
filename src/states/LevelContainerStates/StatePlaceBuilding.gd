@@ -4,7 +4,7 @@ const SOLAR_PANEL = preload("res://scenes/buildings/solarpanel/SolarPanel.tscn")
 const DRONE_HUB = preload("res://scenes/buildings/Dronehub/DroneHub.tscn")
 const STORAGE = preload("res://scenes/buildings/Storage/Storage.tscn")
 const WATERFACTORY = preload("res://scenes/buildings/Waterfactory/Waterfactory.tscn")
-
+const LIVING_QUARTER = preload("res://scenes/buildings/LivingQuarter/LivingQuarter.tscn")
 var building_to_place: BuildingBase = null
 
 
@@ -18,7 +18,7 @@ func process_state(delta: float):
 					)
 				)
 
-	
+
 func process_input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		if event.button_mask == MOUSE_BUTTON_LEFT and event.is_pressed() == true:
@@ -42,6 +42,8 @@ func create_new_building(building_name: String) -> void:
 		building_to_place = STORAGE.instantiate()
 	elif building_name == "waterfactory":
 		building_to_place = WATERFACTORY.instantiate()
+	elif building_name == "living_quarters":
+		building_to_place = LIVING_QUARTER.instantiate()
 	if building_to_place != null:
 		get_parent().get_node("Buildings").add_child(building_to_place)
 		BuildingQuery.BUILDING_ROOT_NODE = get_parent().get_node("Buildings")

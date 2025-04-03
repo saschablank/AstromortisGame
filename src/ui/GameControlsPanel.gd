@@ -5,8 +5,9 @@ extends Panel
 
 
 func _on_open_working_order_btn_pressed() -> void:
-	build_menu.visible = !build_menu.visible
+	working_orders_window.visible = !working_orders_window.visible
 
 
 func _on_open_building_menu_pressed() -> void:
-	working_orders_window.visible = !working_orders_window.visible
+	build_menu.visible = !build_menu.visible
+	

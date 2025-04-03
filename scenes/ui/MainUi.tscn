@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjdlppdak0qwg"]
+[gd_scene load_steps=9 format=3 uid="uid://cjdlppdak0qwg"]
 
 [ext_resource type="Script" path="res://src/ui/MainUi.gd" id="1_6yf67"]
 [ext_resource type="Script" path="res://src/ui/BuildingBtn.gd" id="2_kmwhb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bnsf4hk45xrjl" path="res://assets/Ui/icons/working_order_icon.png" id="4_hlaoq"]
 [ext_resource type="Script" path="res://src/ui/GameControlsPanel.gd" id="4_j0mjq"]
 [ext_resource type="Texture2D" uid="uid://dcqf7v18kankx" path="res://assets/Ui/icons/info_icons.png" id="4_o4v4l"]
+[ext_resource type="Texture2D" uid="uid://8vyleuesa4x" path="res://assets/Ui/icons/corridor.png" id="7_61wds"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w02m2"]
 atlas = ExtResource("4_o4v4l")
@@ -21,7 +22,6 @@ grow_vertical = 2
 script = ExtResource("1_6yf67")
 
 [node name="BuildMenu" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -80,6 +80,11 @@ layout_mode = 2
 text = "Storage"
 script = ExtResource("2_kmwhb")
 
+[node name="living_quarters" type="Button" parent="BuildMenu/HBoxContainer"]
+layout_mode = 2
+text = "Living Quarter"
+script = ExtResource("2_kmwhb")
+
 [node name="WorkingOrders" parent="." instance=ExtResource("3_evpcf")]
 visible = false
 offset_left = 98.0
@@ -92,7 +97,7 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -162.0
+offset_top = -227.0
 offset_right = 90.0
 grow_vertical = 0
 script = ExtResource("4_j0mjq")
@@ -124,6 +129,11 @@ tooltip_text = "Build"
 icon = SubResource("AtlasTexture_w02m2")
 icon_alignment = 1
 
+[node name="buildCorridor" type="Button" parent="GameControls/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("7_61wds")
+icon_alignment = 1
+
 [connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/solar_panel" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="BuildMenu/HBoxContainer/solar_panel" to="BuildMenu/HBoxContainer/solar_panel" method="_on_pressed"]
 [connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/energy_storage" to="." method="_on_building_btn_pressed"]
@@ -138,5 +148,8 @@ icon_alignment = 1
 [connection signal="pressed" from="BuildMenu/HBoxContainer/dronehub" to="BuildMenu/HBoxContainer/dronehub" method="_on_pressed"]
 [connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/storage" to="." method="_on_building_btn_pressed"]
 [connection signal="pressed" from="BuildMenu/HBoxContainer/storage" to="BuildMenu/HBoxContainer/storage" method="_on_pressed"]
+[connection signal="_on_building_btn_pressed" from="BuildMenu/HBoxContainer/living_quarters" to="." method="_on_building_btn_pressed"]
+[connection signal="pressed" from="BuildMenu/HBoxContainer/living_quarters" to="BuildMenu/HBoxContainer/living_quarters" method="_on_pressed"]
 [connection signal="pressed" from="GameControls/VBoxContainer/openWorkingOrderBtn" to="GameControls" method="_on_open_working_order_btn_pressed"]
 [connection signal="pressed" from="GameControls/VBoxContainer/openBuildingMenu" to="GameControls" method="_on_open_building_menu_pressed"]
+[connection signal="pressed" from="GameControls/VBoxContainer/buildCorridor" to="." method="_on_build_corridor_pressed"]
